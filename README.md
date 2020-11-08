@@ -5,6 +5,13 @@ This is my report and compilation of necessary steps to test the functionalities
 - **OS**: Ubuntu 20.04.1
 - **Sphere By Horizen**: [v2.0.0](https://github.com/HorizenOfficial/Sphere_by_Horizen_Sidechain_Testnet/releases/download/desktop-v2.0.0-beta-sidechain-testnet/Sphere_by_Horizen_Sidechain_Testnet-2.0.0-beta.deb)
 
+The only process taken is the time it synchronizes with the network. Not counting that process, it only takes a couple of minutes. 👍🏻
+
+- ✅ Download Sphere by Horizen 2.0.0: https://github.com/HorizenOfficial/Sphere_by_Horizen_Sidechain_Testnet/releases/tag/desktop-v2.0.0-beta-sidechain-testnet
+- ✅Obtain free test ZEN (tZEN) via the Horizen Early Adopter Program (HEAP): https://heap.horizen.global/
+- ✅Use the dedicated commands on Sphere by Horizen to declare a new sidechain
+- ✅Perform a Forward Transfer from the mainchain to the sidechain
+
 ## Download & Install .deb - Auth 🔐
 
 The truth is that this process was too easy. And the registration is intuitive.
