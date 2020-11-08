@@ -28,7 +28,7 @@ Once I log in, I have to wait for it to sync with the network.
 
 This is a time consuming process.
 
-**How viable would it be to create a fast captchup or maybe a lightweight node?**
+**How viable would it be to create a fast catchup or maybe a lightweight node?**
 
 I know it is not a safe option, but for entry developers and testing the technology would be a great advantage.
  
