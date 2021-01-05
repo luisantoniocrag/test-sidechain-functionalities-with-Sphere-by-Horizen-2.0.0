@@ -1,105 +1,175 @@
-# Test Sidechain Functionalities With Sphere by Horizen
-
-This is my report and compilation of necessary steps to test the functionalities of the sidechain and perform a forward transfer from the mainchain to the sidechain.
-
-- **OS**: Ubuntu 20.04.1
-- **Sphere By Horizen**: [v2.0.0](https://github.com/HorizenOfficial/Sphere_by_Horizen_Sidechain_Testnet/releases/download/desktop-v2.0.0-beta-sidechain-testnet/Sphere_by_Horizen_Sidechain_Testnet-2.0.0-beta.deb)
-
-The only process taken is the time it synchronizes with the network. Not counting that process, it only takes a couple of minutes. 👍🏻
-
-- ✅ Download Sphere by Horizen 2.0.0: https://github.com/HorizenOfficial/Sphere_by_Horizen_Sidechain_Testnet/releases/tag/desktop-v2.0.0-beta-sidechain-testnet
-- ✅Obtain free test ZEN (tZEN) via the Horizen Early Adopter Program (HEAP): https://heap.horizen.global/
-- ✅Use the dedicated commands on Sphere by Horizen to declare a new sidechain
-- ✅Perform a Forward Transfer from the mainchain to the sidechain
-
-## Download & Install .deb - Auth 🔐
-
-The truth is that this process was too easy. And the registration is intuitive.
-
-I first created an account and then logged in.
-
-![registerSP](./assets/registerSP.png)
-
-## Wait for Sync 🕐
-
-![sync](./assets/sync.png)
-
-Once I log in, I have to wait for it to sync with the network.
-
-This is a time consuming process.
-
-**How viable would it be to create a fast catchup or maybe a lightweight node?**
-
-I know it is not a safe option, but for entry developers and testing the technology would be a great advantage.
+通过Horizen钱包从Sphere创建Horizen侧链
  
-> I don't know if Horizen has already planned or has a built solution.
 
-## While Creating an New Wallet
+需要的软件：
 
- ![creating-wallet](./assets/create-wallet.gif)
+Jdk 1.8 或者更高的版本
 
-This process has very good UX.👌🏻
+Sphere_by_Horizen_Sidechain_Testnet-2.0.0-beta.exe
 
-## Obtain free test ZEN (tZEN) 🤩
+ 
 
-> Too bad they are only test coins.😓
+ 
 
-![faucet](./assets/faucet.png)
+1.1运行Sphere钱包：
+ 
 
-## Installation requirements ...
+点击Create链接，创建钱包
 
-```bash
-$ sudo apt-get update
-$ sudo apt-get install -y software-properties-common
-$ wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
-$ sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
-$ sudo apt-get update
-$ sudo apt-get install adoptopenjdk-8-hotspot
-$ sudo apt-get install maven
-```
+ 
 
-## Build Sidechains SDK
+名称随意，密码需要符合提示的要求，创建成功后登录后可以参考下图设置为中文。
 
-https://github.com/HorizenOfficial/Sidechains-SDK/tree/master/examples/simpleapp
+ 
 
-```bash
-$ git clone https://github.com/ZencashOfficial/Sidechains-SDK.git
-$ pushd Sidechains-SDK
-$ mvn package
-```
+ 
 
-In my case, JAVA was not configured correctly.
+等待同步完成（目前的链大约4.2同步大概需要一天）
 
-And I used the help of this short but great article 👍🏻: 
-https://medium.com/@charinin/setting-java-home-environment-variable-in-ubuntu-e355c80e5b6c
+ 
 
-![build-success](./assets/build.png)
+ 
 
-Due to my environment configuration I had to go through the build process with administrator permissions.
+1.2创建Sphere钱包：
+点击：添加钱包-》创建新钱包，设置钱包名称，这里有个坑：马上要点击创建的按钮，不要等那个计时器完成，然后记下生产的单词列表并验证，之后可以看到这个新地址，点击复制地址。
 
-## Bootstrapping 💻
+ 
 
-I followed the recommended steps in:
-https://github.com/HorizenOfficial/Sidechains-SDK/blob/master/examples/simpleapp/mc_sc_workflow_example.md
+ 
 
-`java -jar tools/sctool/target/sidechains-sdk-scbootstrappingtools-0.2.5.jar`
+ 
 
-And the responses in .json are stored in [this file](./simpleapp.response.jsonc).
+1.3使用水龙头接收测试币
+访问：https://heap.horizen.io/ 向下滑动页面到最底下。输入刚刚复制的地址点击：CLAIM.
 
-Then go to Sphere by Horizen-2.0.0 again....
+ 
 
-## Creating a New Sidechain 🔅
+通过人机验证，并输入一下信息后，你可以得到12个测试币。
 
-Got synced and now I can create a new sidechain on testnet.
+ 
 
-![creating-sidechain](./assets/create-sidechain.png)
+ 
 
-![sidechain-created](./assets/sidechain-created.png)
-![sidechain-explorer](./assets/sidechain-explorer.png)
+返回钱包等待几分钟后就可以看到这些测试币。
 
-I waited for my SidechainCool😎 to confirm and now if ... I did a forward transfer from main chain to side chain
+ 
 
-## Forward Transfer from Main Chain to Side Chain 🤑
-![transaction](./assets/transaction.png)
-![transaction-sent](./assets/transaction-sent.png)
-![end](./assets/end.png)
+2.1安装jdk
+下载安装，一路next即可，然后需要把bin目录添加到系统path环境变量中。
+
+ 
+
+2.2.安装mvn
+http://maven.apache.org/download.cgi
+
+ 
+
+2.3安装git
+https://git-scm.com/download/win
+
+下载后一路next。
+
+git clone https://github.com/ZencashOfficial/Sidechains-SDK.git
+
+下载最新的代码
+
+ 
+
+2.4编译软件
+git clone https://github.com/ZencashOfficial/Sidechains-SDK.git
+
+输入：
+
+java –version
+
+mvn –version
+
+检查需要的软件是否正常。
+
+ 
+
+ 
+
+进入下载的软件目录：cd Sidechains-SDK
+
+设置环境变量：set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_261\
+
+ 
+
+编译：mvn package
+
+编译成功后出现如下界面：
+
+ 
+
+ 
+
+3.1生成密钥：
+
+java -jar tools/sctool/target/sidechains-sdk-scbootstrappingtools-0.2.5.jar
+
+注意：这个包的版本号可能会有变化，具体去文件夹看看就知道了。
+
+ 
+
+输入：
+
+A generatekey {"seed":"BUvQVGnY5PGG99q4BHZZar5ab7B6X4AMFnKheg5B7m"}
+
+复制系统返回的信息：
+
+ 
+
+B generateVrfKey {"seed":"AEvEHXJw63JtwcauKKz3km8MfHCkGeHXuKBeH32hD5"}
+
+复制系统返回的信息：
+
+C generateProofInfo {"seed":"ap7zGSt79nS3BJwDY3A5JKEVNbsnxpwcPc7rEZnXL7", "keyCount":7, "threshold":5}
+
+复制系统返回的信息：
+
+ 
+
+3.1在图形界面中声明侧链
+
+在钱包中点击：test图标，输入以下信息：
+
+Custom name：侧链的名字，请随意；
+
+Pay from：付款的钱包，就是刚刚创建的钱包地址；
+
+Sidechain creation address: 上面步骤A中返回的publicKey，长度：64；
+
+wCertVk:上面步骤C中返回的verificationKey，长度：3088；
+
+Constant data: 上面步骤C中返回的genSysConstant长度：192;
+
+Custom data: 上面步骤B中返回的vrfPublicKey长度：386;
+
+ 
+
+点击：con成功后界面如下：
+
+ 
+
+ 
+
+4.1主链向侧链转账：
+
+确保已选中“侧链交易”按钮，以查看对侧链进行交易的可能性。选择您的侧链。
+
+ 
+
+发送至：generateKey调用而获得的publicKey，输入数量点击发送。
+
+ 
+
+交易收到足够的确认后，我们可以看到相关数量的代币已记入侧链。
+
+ 
+
+ 
+
+ 
+
+ 
